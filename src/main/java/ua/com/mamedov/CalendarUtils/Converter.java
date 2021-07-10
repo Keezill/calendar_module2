@@ -1,7 +1,5 @@
 package ua.com.mamedov.CalendarUtils;
 
-import ua.com.mamedov.DateFormat;
-
 public class Converter {
 
     DateFormat dateFormat = new DateFormat();

@@ -1,6 +1,6 @@
 package ua.com.mamedov.UI;
 
-import ua.com.mamedov.DateFormat;
+import ua.com.mamedov.CalendarUtils.DateFormat;
 import ua.com.mamedov.Operation_with_date.TimeCalculation;
 
 import java.io.BufferedReader;

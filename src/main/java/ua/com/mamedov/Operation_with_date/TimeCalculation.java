@@ -2,7 +2,7 @@ package ua.com.mamedov.Operation_with_date;
 
 import ua.com.mamedov.CalendarUtils.TimeContainer;
 import ua.com.mamedov.CalendarUtils.Converter;
-import ua.com.mamedov.DateFormat;
+import ua.com.mamedov.CalendarUtils.DateFormat;
 
 import java.io.BufferedReader;
 import java.io.IOException;

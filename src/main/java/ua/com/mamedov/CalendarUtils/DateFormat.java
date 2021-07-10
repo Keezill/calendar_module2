@@ -1,4 +1,4 @@
-package ua.com.mamedov;
+package ua.com.mamedov.CalendarUtils;
 
 import lombok.Getter;
 import lombok.Setter;
