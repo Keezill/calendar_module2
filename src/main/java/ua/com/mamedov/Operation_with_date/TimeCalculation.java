@@ -1,6 +1,6 @@
 package ua.com.mamedov.Operation_with_date;
 
-import ua.com.mamedov.CalendarUtils.TimeContainer;
+import ua.com.mamedov.Entity.TimeContainer;
 import ua.com.mamedov.CalendarUtils.Converter;
 import ua.com.mamedov.CalendarUtils.DateFormat;
 
@@ -12,10 +12,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class TimeCalculation {
-    Converter converter = new Converter();
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     TimeContainer timeContainer = new TimeContainer();
-    DateFormat dateFormat = new DateFormat();
+    public DateFormat dateFormat = new DateFormat();
     public List<Long> dateList = new ArrayList<>();
 
     public void create() {
@@ -26,11 +25,11 @@ public class TimeCalculation {
             String duration = date.substring(date.indexOf(" ") + 1);
             String[] partTimes = duration.split(":");
             if (partTimes.length < 3) {
-                sum += converter.minToSec(Integer.parseInt(partTimes[0])) +
+                sum += Converter.minToSec(Integer.parseInt(partTimes[0])) +
                         Integer.parseInt(partTimes[1]);
             } else {
-                sum += converter.hoursToSec(Integer.parseInt(partTimes[0])) +
-                        converter.minToSec(Integer.parseInt(partTimes[1])) +
+                sum += Converter.hoursToSec(Integer.parseInt(partTimes[0])) +
+                        Converter.minToSec(Integer.parseInt(partTimes[1])) +
                         Integer.parseInt(partTimes[2]);
             }
             System.out.println(sum);
@@ -58,12 +57,12 @@ public class TimeCalculation {
                 || Integer.parseInt(splitDate[1]) <= 12 && Integer.parseInt(splitDate[1]) > 0) {
             long months = 0;
             for (int i = 1; i <= Integer.parseInt(splitDate[1]); i++) {
-                months += converter.monthToSec(i, Integer.parseInt(splitDate[2]));
+                months += Converter.monthToSec(i, Integer.parseInt(splitDate[2]));
             }
 
-            sum = converter.daysToSec(Integer.parseInt(splitDate[0])) +
+            sum = Converter.daysToSec(Integer.parseInt(splitDate[0])) +
                     months +
-                    converter.yearToSec(Integer.parseInt(splitDate[2]));
+                    Converter.yearToSec(Integer.parseInt(splitDate[2]));
         }
         return sum;
     }
@@ -89,42 +88,42 @@ public class TimeCalculation {
                         System.out.println("Enter number of seconds you want to add:");
                         int second = Integer.parseInt(reader.readLine());
                         timeContainer.setSeconds(timeContainer.getSeconds() + second);
-                        System.out.println(converter.convertFromSecToDate(timeContainer.getSeconds()));
+                        System.out.println(Converter.convertFromSecToDate(timeContainer.getSeconds()));
                         return;
                     }
                     case "2" -> {
                         System.out.println("Enter number of minutes you want to add:");
                         int minute = Integer.parseInt(reader.readLine());
-                        timeContainer.setSeconds(timeContainer.getSeconds() + converter.minToSec(minute));
-                        System.out.println(converter.convertFromSecToDate(timeContainer.getSeconds()));
+                        timeContainer.setSeconds(timeContainer.getSeconds() + Converter.minToSec(minute));
+                        System.out.println(Converter.convertFromSecToDate(timeContainer.getSeconds()));
                         return;
                     }
                     case "3" -> {
                         System.out.println("Enter number of hours you want to add:");
                         int hour = Integer.parseInt(reader.readLine());
-                        timeContainer.setSeconds(timeContainer.getSeconds() + converter.hoursToSec(hour));
-                        System.out.println(converter.convertFromSecToDate(timeContainer.getSeconds()));
+                        timeContainer.setSeconds(timeContainer.getSeconds() + Converter.hoursToSec(hour));
+                        System.out.println(Converter.convertFromSecToDate(timeContainer.getSeconds()));
                         return;
                     }
                     case "4" -> {
                         System.out.println("Enter number of days you want to add:");
                         int days = Integer.parseInt(reader.readLine());
-                        timeContainer.setSeconds(timeContainer.getSeconds() + converter.daysToSec(days));
-                        System.out.println(converter.convertFromSecToDate(timeContainer.getSeconds()));
+                        timeContainer.setSeconds(timeContainer.getSeconds() + Converter.daysToSec(days));
+                        System.out.println(Converter.convertFromSecToDate(timeContainer.getSeconds()));
                         return;
                     }
                     case "5" -> {
                         System.out.println("Enter number of months you want to add:");
                         int months = Integer.parseInt(reader.readLine());
-                        timeContainer.setSeconds(timeContainer.getSeconds() + converter.monthToSec(months));
-                        System.out.println(converter.convertFromSecToDate(timeContainer.getSeconds()));
+                        timeContainer.setSeconds(timeContainer.getSeconds() + Converter.monthToSec(months));
+                        System.out.println(Converter.convertFromSecToDate(timeContainer.getSeconds()));
                         return;
                     }
                     case "6" -> {
                         System.out.println("Enter number of years you want to add:");
                         int years = Integer.parseInt(reader.readLine());
-                        timeContainer.setSeconds(timeContainer.getSeconds() + converter.yearToSec(years));
-                        System.out.println(converter.convertFromSecToDate(timeContainer.getSeconds()));
+                        timeContainer.setSeconds(timeContainer.getSeconds() + Converter.yearToSec(years));
+                        System.out.println(Converter.convertFromSecToDate(timeContainer.getSeconds()));
                         return;
                     }
                     case "0" -> {
@@ -159,42 +158,42 @@ public class TimeCalculation {
                         System.out.println("Enter number of seconds you want to subtract:");
                         int second = Integer.parseInt(reader.readLine());
                         timeContainer.setSeconds(timeContainer.getSeconds() - second);
-                        System.out.println(converter.convertFromSecToDate(timeContainer.getSeconds()));
+                        System.out.println(Converter.convertFromSecToDate(timeContainer.getSeconds()));
                         return;
                     }
                     case "2" -> {
                         System.out.println("Enter number of minutes you want to subtract:");
                         int minute = Integer.parseInt(reader.readLine());
-                        timeContainer.setSeconds(timeContainer.getSeconds() - converter.minToSec(minute));
-                        System.out.println(converter.convertFromSecToDate(timeContainer.getSeconds()));
+                        timeContainer.setSeconds(timeContainer.getSeconds() - Converter.minToSec(minute));
+                        System.out.println(Converter.convertFromSecToDate(timeContainer.getSeconds()));
                         return;
                     }
                     case "3" -> {
                         System.out.println("Enter number of hours you want to subtract:");
                         int hour = Integer.parseInt(reader.readLine());
-                        timeContainer.setSeconds(timeContainer.getSeconds() - converter.hoursToSec(hour));
-                        System.out.println(converter.convertFromSecToDate(timeContainer.getSeconds()));
+                        timeContainer.setSeconds(timeContainer.getSeconds() - Converter.hoursToSec(hour));
+                        System.out.println(Converter.convertFromSecToDate(timeContainer.getSeconds()));
                         return;
                     }
                     case "4" -> {
                         System.out.println("Enter number of days you want to subtract:");
                         int days = Integer.parseInt(reader.readLine());
-                        timeContainer.setSeconds(timeContainer.getSeconds() - converter.daysToSec(days));
-                        System.out.println(converter.convertFromSecToDate(timeContainer.getSeconds()));
+                        timeContainer.setSeconds(timeContainer.getSeconds() - Converter.daysToSec(days));
+                        System.out.println(Converter.convertFromSecToDate(timeContainer.getSeconds()));
                         return;
                     }
                     case "5" -> {
                         System.out.println("Enter number of months you want to subtract:");
                         int months = Integer.parseInt(reader.readLine());
-                        timeContainer.setSeconds(timeContainer.getSeconds() - converter.monthToSec(months));
-                        System.out.println(converter.convertFromSecToDate(timeContainer.getSeconds()));
+                        timeContainer.setSeconds(timeContainer.getSeconds() - Converter.monthToSec(months));
+                        System.out.println(Converter.convertFromSecToDate(timeContainer.getSeconds()));
                         return;
                     }
                     case "6" -> {
                         System.out.println("Enter number of years you want to subtract:");
                         int years = Integer.parseInt(reader.readLine());
-                        timeContainer.setSeconds(timeContainer.getSeconds() - converter.yearToSec(years));
-                        System.out.println(converter.convertFromSecToDate(timeContainer.getSeconds()));
+                        timeContainer.setSeconds(timeContainer.getSeconds() - Converter.yearToSec(years));
+                        System.out.println(Converter.convertFromSecToDate(timeContainer.getSeconds()));
                         return;
                     }
                     case "0" -> {
@@ -287,13 +286,13 @@ public class TimeCalculation {
                         comparator();
                     }
                     case "2" -> {
-                       dateList.clear();
-                       comparator();
+                        dateList.clear();
+                        comparator();
                     }
                     case "3" -> {
                         Collections.sort(dateList);
                         for (Long aLong : dateList) {
-                            System.out.println(converter.convertFromSecToDate(aLong));
+                            System.out.println(Converter.convertFromSecToDate(aLong));
                         }
                         return;
                     }
@@ -301,7 +300,7 @@ public class TimeCalculation {
                         Collections.sort(dateList);
                         Collections.reverse(dateList);
                         for (Long aLong : dateList) {
-                            System.out.println(converter.convertFromSecToDate(aLong));
+                            System.out.println(Converter.convertFromSecToDate(aLong));
                         }
                         return;
                     }

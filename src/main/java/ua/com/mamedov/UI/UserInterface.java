@@ -7,17 +7,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class UserInterface{
+public class UserInterface {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    TimeCalculation timeCalculation = new TimeCalculation();
 
     public void run() {
         System.out.println("Select your option");
         try {
             dateFormat();
             String c = reader.readLine();
-            dateChoice(c, reader);
+            dateFormatChoice(c);
         } catch (IOException e) {
-            System.out.println("Sorry, there is a problem: = " + e.getMessage());
+            System.out.println("Sorry, something went wrong. Try again.");
         }
 
         System.out.println("Select your option");
@@ -25,24 +26,23 @@ public class UserInterface{
         try {
             runMainMenuNavigation();
             while ((position = reader.readLine()) != null) {
-                choice(position, reader);
+                choice(position);
                 position = reader.readLine();
                 if (position.equals("0")) {
                     System.exit(0);
                 }
-                choice(position, reader);
             }
         } catch (IOException e) {
-            System.out.println("Sorry, there is a problem: = " + e.getMessage());
+            System.out.println("Sorry, something went wrong. Try again.");
         }
     }
 
-    private void choice(String position, BufferedReader reader) throws IOException {
+    private void choice(String position) throws IOException {
         switch (position) {
-            case "1" -> new TimeCalculation().add();
-            case "2" -> new TimeCalculation().subtract();
-            case "3" -> new TimeCalculation().difference();
-            case "4" -> new TimeCalculation().comparator();
+            case "1" -> timeCalculation.add();
+            case "2" -> timeCalculation.subtract();
+            case "3" -> timeCalculation.difference();
+            case "4" -> timeCalculation.comparator();
         }
         runMainMenuNavigation();
     }
@@ -57,13 +57,12 @@ public class UserInterface{
         System.out.println();
     }
 
-    private void dateChoice(String choice, BufferedReader reader) throws IOException {
-        DateFormat dateFormat = new DateFormat();
+    private void dateFormatChoice(String choice) throws IOException {
         switch (choice) {
-            case "1" -> dateFormat.setDdMmYy(true);
-            case "2" -> dateFormat.setMDYyyy(true);
-            case "3" -> dateFormat.setMmmDYy(true);
-            case "4" -> dateFormat.setDdMmYyAndTime(true);
+            case "1" -> timeCalculation.dateFormat.setDdMmYy(true);
+            case "2" -> timeCalculation.dateFormat.setMDYyyy(true);
+            case "3" -> timeCalculation.dateFormat.setMmmDYy(true);
+            case "4" -> timeCalculation.dateFormat.setDdMmYyAndTime(true);
         }
     }
 

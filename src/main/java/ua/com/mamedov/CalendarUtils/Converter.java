@@ -2,9 +2,8 @@ package ua.com.mamedov.CalendarUtils;
 
 public class Converter {
 
-    DateFormat dateFormat = new DateFormat();
-
-    public long yearToSec(int year) {
+    public DateFormat dateFormat = new DateFormat();
+    public static long yearToSec(int year) {
         long sec;
         if (year % 4 == 0 && year % 100 != 0 && year % 400 == 0) {
             sec = year * 31622400L;
@@ -14,7 +13,7 @@ public class Converter {
         return sec;
     }
 
-    public long monthToSec(int month, int year) {
+    public static long monthToSec(int month, int year) {
         if (month == 2 && year % 4 == 0) {
             return 29 * 86400;
         } else if (month == 2) {
@@ -26,23 +25,23 @@ public class Converter {
         }
     }
 
-    public long monthToSec(int month) {
+    public static long monthToSec(int month) {
         return (long) month * 30 * 86400;
     }
 
-    public int daysToSec(int number) {
+    public static int daysToSec(int number) {
         return number * 86400;
     }
 
-    public int hoursToSec(int number) {
+    public static int hoursToSec(int number) {
         return number * 3600;
     }
 
-    public int minToSec(int number) {
+    public static int minToSec(int number) {
         return number * 60;
     }
 
-    public String convertFromSecToDate(long sec) {
+    public static String convertFromSecToDate(long sec) {
         int month = 0;
         int day = 0;
         int hour = 0;
@@ -109,6 +108,7 @@ public class Converter {
             year--;
             month = 12;
         }
+        DateFormat dateFormat = new DateFormat();
 
         if (dateFormat.isDdMmYy()) {
             String yearNew = String.valueOf(year);
