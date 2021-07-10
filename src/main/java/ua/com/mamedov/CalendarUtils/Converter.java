@@ -2,7 +2,6 @@ package ua.com.mamedov.CalendarUtils;
 
 public class Converter {
 
-    public DateFormat dateFormat = new DateFormat();
     public static long yearToSec(int year) {
         long sec;
         if (year % 4 == 0 && year % 100 != 0 && year % 400 == 0) {
@@ -115,7 +114,7 @@ public class Converter {
             return day + "/" + month + "/" + (yearNew.length() - 1) + (yearNew.length() - 2);
         } else if (dateFormat.isMDYyyy()) {
             return month + "/" + day + "/" + year;
-        } else if (dateFormat.isMmmDYy()) {
+        } else if (!dateFormat.isMmmDYy()) {
             String monthString = "Unknown";
             switch (month) {
                 case 1:
