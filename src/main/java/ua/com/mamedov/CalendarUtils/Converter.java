@@ -114,7 +114,7 @@ public class Converter {
             return day + "/" + month + "/" + (yearNew.length() - 1) + (yearNew.length() - 2);
         } else if (dateFormat.isMDYyyy()) {
             return month + "/" + day + "/" + year;
-        } else if (!dateFormat.isMmmDYy()) {
+        } else if (dateFormat.isMmmDYy()) {
             String monthString = switch (month) {
                 case 1 -> "January";
                 case 2 -> "February";

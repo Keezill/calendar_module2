@@ -224,6 +224,7 @@ public class TimeCalculation {
         System.out.println("6 - Years");
         System.out.println("0 - Return");
 
+        dateList.clear();
         String read;
         try {
             while ((read = reader.readLine()) != null) {
