@@ -1,5 +1,7 @@
 package ua.com.mamedov.UI;
 
+import ua.com.mamedov.CalendarUtils.Converter;
+import ua.com.mamedov.CalendarUtils.DateFormat;
 import ua.com.mamedov.Operation_with_date.TimeCalculation;
 
 import java.io.BufferedReader;
@@ -8,10 +10,13 @@ import java.io.InputStreamReader;
 
 public class UserInterface {
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    TimeCalculation timeCalculation = new TimeCalculation();
+    private final DateFormat dateFormat = new DateFormat();
+    Converter converter = new Converter(dateFormat);
+    TimeCalculation timeCalculation = new TimeCalculation(converter);
+
 
     public void run() {
-        System.out.println("Select your option");
+        System.out.println("Select your output option");
         try {
             dateFormat();
             String c = reader.readLine();
@@ -58,10 +63,10 @@ public class UserInterface {
 
     private void dateFormatChoice(String choice) throws IOException {
         switch (choice) {
-            case "1" -> timeCalculation.dateFormat.setDdMmYy(true);
-            case "2" -> timeCalculation.dateFormat.setMDYyyy(true);
-            case "3" -> timeCalculation.dateFormat.setMmmDYy(true);
-            case "4" -> timeCalculation.dateFormat.setDdMmYyAndTime(true);
+            case "1" -> dateFormat.setDdMmYy(true);
+            case "2" -> dateFormat.setMDYyyy(true);
+            case "3" -> dateFormat.setMmmDYy(true);
+            case "4" -> dateFormat.setDdMmYyAndTime(true);
         }
     }
 

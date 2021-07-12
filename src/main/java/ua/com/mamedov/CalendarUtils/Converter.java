@@ -2,7 +2,13 @@ package ua.com.mamedov.CalendarUtils;
 
 public class Converter {
 
-    public static long yearToSec(int year) {
+    private final DateFormat dateFormat;
+
+    public Converter(DateFormat dateFormat) {
+        this.dateFormat = dateFormat;
+    }
+
+    public long yearToSec(int year) {
         long sec;
         if (year % 4 == 0 && year % 100 != 0 && year % 400 == 0) {
             sec = year * 31622400L;
@@ -12,7 +18,7 @@ public class Converter {
         return sec;
     }
 
-    public static long monthToSec(int month, int year) {
+    public long monthToSec(int month, int year) {
         if (month == 2 && year % 4 == 0) {
             return 29 * 86400;
         } else if (month == 2) {
@@ -24,23 +30,23 @@ public class Converter {
         }
     }
 
-    public static long monthToSec(int month) {
+    public long monthToSec(int month) {
         return (long) month * 30 * 86400;
     }
 
-    public static int daysToSec(int number) {
+    public int daysToSec(int number) {
         return number * 86400;
     }
 
-    public static int hoursToSec(int number) {
+    public int hoursToSec(int number) {
         return number * 3600;
     }
 
-    public static int minToSec(int number) {
+    public int minToSec(int number) {
         return number * 60;
     }
 
-    public static String convertFromSecToDate(long sec) {
+    public String convertFromSecToDate(long sec) {
         int month = 0;
         int day = 0;
         int hour = 0;
@@ -107,32 +113,38 @@ public class Converter {
             year--;
             month = 12;
         }
-        DateFormat dateFormat = new DateFormat();
 
         if (dateFormat.isDdMmYy()) {
             String yearNew = String.valueOf(year);
-            return day + "/" + month + "/" + (yearNew.length() - 1) + (yearNew.length() - 2);
+            return day + "/" + month + "/" + yearNew.charAt(2) + yearNew.charAt(3);
         } else if (dateFormat.isMDYyyy()) {
             return month + "/" + day + "/" + year;
         } else if (dateFormat.isMmmDYy()) {
-            String monthString = switch (month) {
-                case 1 -> "January";
-                case 2 -> "February";
-                case 3 -> "March";
-                case 4 -> "April";
-                case 5 -> "May";
-                case 6 -> "June";
-                case 7 -> "July";
-                case 8 -> "August";
-                case 9 -> "September";
-                case 10 -> "October";
-                case 11 -> "November";
-                case 12 -> "December";
-                default -> "Unknown";
-            };
+            String monthString = findMonth(month);
             return monthString + "-" + day + "-" + year;
+        } else if (dateFormat.isDdMmYyAndTime()) {
+            String monthString = findMonth(month);
+            return day + "-" + monthString + "-" + year + " " + hour + ":" + minute + ":" + sec;
         }
         return day + "/" + month + "/" + year + " " + hour + ":" + minute + ":" + second;
+    }
+
+    private String findMonth(int month) {
+        return switch (month) {
+            case 1 -> "January";
+            case 2 -> "February";
+            case 3 -> "March";
+            case 4 -> "April";
+            case 5 -> "May";
+            case 6 -> "June";
+            case 7 -> "July";
+            case 8 -> "August";
+            case 9 -> "September";
+            case 10 -> "October";
+            case 11 -> "November";
+            case 12 -> "December";
+            default -> "Unknown";
+        };
     }
 }
 
